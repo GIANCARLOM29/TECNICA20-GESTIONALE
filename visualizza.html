@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visualizza Atleta</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    margin: 20px;
+}
+
+.box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+img {
+    max-width: 160px;
+    border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Dati Atleta</h2>
+
+<div class="box">
+    <p><strong>Nome:</strong> <span id="nome"></span></p>
+    <p><strong>Cognome:</strong> <span id="cognome"></span></p>
+    <p><strong>Data di nascita:</strong> <span id="dataNascita"></span></p>
+    <p><strong>Giorno lezione:</strong> <span id="giornoLezione"></span></p>
+    <p><strong>Orario lezione:</strong> <span id="orarioLezione"></span></p>
+
+    <p><strong>Lezioni totali:</strong> <span id="lezioni"></span></p>
+    <p><strong>Costo:</strong> <span id="costo"></span> €</p>
+
+    <p><strong>Certificato medico:</strong> <span id="certificato"></span></p>
+    <p><strong>Fine pacchetto:</strong> <span id="finePacchetto"></span></p>
+
+    <p><strong>Foto atleta:</strong></p>
+    <img id="foto" src="" alt="Foto non disponibile">
+</div>
+
+
+<h2>Dati Genitore</h2>
+
+<div class="box">
+    <p><strong>Nome:</strong> <span id="gNome"></span></p>
+    <p><strong>Cognome:</strong> <span id="gCognome"></span></p>
+    <p><strong>Cell:</strong> <span id="gCell"></span></p>
+    <p><strong>Email:</strong> <span id="gEmail"></span></p>
+
+    <p><strong>Via:</strong> <span id="via"></span></p>
+    <p><strong>CAP:</strong> <span id="cap"></span></p>
+    <p><strong>Città:</strong> <span id="citta"></span></p>
+    <p><strong>Codice fiscale:</strong> <span id="gCF"></span></p>
+</div>
+
+
+<h2>Acconti</h2>
+
+<div class="box">
+    <p><strong>Acconto 1:</strong> <span id="a1"></span> € - <span id="d1"></span></p>
+    <p><strong>Acconto 2:</strong> <span id="a2"></span> € - <span id="d2"></span></p>
+    <p><strong>Acconto 3:</strong> <span id="a3"></span> € - <span id="d3"></span></p>
+</div>
+
+
+<script>
+// Carica l'elenco atleti dal LocalStorage
+let elenco = JSON.parse(localStorage.getItem("atleti")) || [];
+
+// Se non ci sono atleti → mostra messaggio
+if (elenco.length === 0) {
+    document.body.innerHTML = "<h2>Nessun atleta salvato.</h2>";
+} else {
+    // Prende L'ULTIMO atleta salvato
+    let atleta = elenco[elenco.length - 1];
+
+    // --- DATI ATLETA ---
+    document.getElementById("nome").innerText = atleta.nome;
+    document.getElementById("cognome").innerText = atleta.cognome;
+    document.getElementById("dataNascita").innerText = atleta.dataNascita;
+    document.getElementById("giornoLezione").innerText = atleta.giornoLezione;
+    document.getElementById("orarioLezione").innerText = atleta.orarioLezione;
+
+    document.getElementById("lezioni").innerText = atleta.lezioni;
+    document.getElementById("costo").innerText = atleta.costo;
+    document.getElementById("certificato").innerText = atleta.certMedico;
+    document.getElementById("finePacchetto").innerText = atleta.finePacchetto;
+
+    // Foto atleta
+    if (atleta.foto) {
+        document.getElementById("foto").src = atleta.foto;
+    } else {
+        document.getElementById("foto").style.display = "none";
+    }
+
+    // --- DATI GENITORE ---
+    document.getElementById("gNome").innerText = atleta.genitoreNome;
+    document.getElementById("gCognome").innerText = atleta.genitoreCognome;
+    document.getElementById("gCell").innerText = atleta.genitoreCell;
+    document.getElementById("gEmail").innerText = atleta.genitoreEmail;
+
+    document.getElementById("via").innerText = atleta.via;
+    document.getElementById("cap").innerText = atleta.cap;
+    document.getElementById("citta").innerText = atleta.citta;
+    document.getElementById("gCF").innerText = atleta.codiceFiscale;
+
+    // --- ACCONTI ---
+    document.getElementById("a1").innerText = atleta.acconto1;
+    document.getElementById("d1").innerText = atleta.data1;
+
+    document.getElementById("a2").innerText = atleta.acconto2;
+    document.getElementById("d2").innerText = atleta.data2;
+
+    document.getElementById("a3").innerText = atleta.acconto3;
+    document.getElementById("d3").innerText = atleta.data3;
+}
+</script>
+
+</body>
+</html>

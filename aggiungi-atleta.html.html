@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modulo Atleta</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+.box {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 4px rgba(0,0,0,0.15);
+}
+
+.header-green {
+    background: #0b8d27;
+    padding: 8px 15px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    align-items: center;
+}
+
+.header-green i {
+    margin-right: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="number"] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body class="p-3">
+
+<!-- DATI ATLETA -->
+<div class="box">
+    <div class="header-green">
+        <i class="bi bi-person-fill"></i> Dati Atleta
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <label>Nome</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label>Cognome</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label>Data di nascita</label>
+            <input type="date" class="form-control">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label>Società</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label>Nato a</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-4">
+            <label>Residenza</label>
+            <input type="text" class="form-control">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <label>Lezioni totali</label>
+            <input type="number" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label>Costo (€)</label>
+            <input type="number" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label>Certificato medico</label>
+            <input type="date" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label>Fine pacchetto</label>
+            <input type="date" class="form-control">
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-4">
+        <label>Giorno lezione</label>
+        <select class="form-control">
+            <option value="">Seleziona</option>
+            <option>Lunedì</option>
+            <option>Martedì</option>
+            <option>Mercoledì</option>
+            <option>Giovedì</option>
+            <option>Venerdì</option>
+        </select>
+    </div>
+
+    <div class="col-md-4">
+        <label>Orario lezione</label>
+        <select class="form-control">
+            <option value="">Seleziona</option>
+            <option>15:00</option>
+            <option>16:00</option>
+            <option>17:00</option>
+            <option>18:00</option>
+            <option>19:00</option>
+        </select>
+    </div>
+</div>
+
+    <label class="mt-2">Foto Atleta</label>
+<input type="file" id="fotoInput" class="form-control mb-2" accept="image/*">
+
+<!-- QUI APPARE L’ANTEPRIMA -->
+<img id="fotoPreview" src="" alt="" style="max-width:160px; display:none; border-radius:6px; margin-top:10px;">
+
+</div>
+
+<!-- DATI GENITORE -->
+<div class="box">
+    <div class="header-green">
+        <i class="bi bi-people-fill"></i> Dati Genitore
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <label>Nome</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label>Cognome</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label>Cell</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label>Email</label>
+            <input type="email" class="form-control">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label>Via</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-2">
+            <label>CAP</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label>Città</label>
+            <input type="text" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label>Codice Fiscale</label>
+            <input type="text" class="form-control">
+        </div>
+    </div>
+</div>
+
+<!-- ACCONTI -->
+<div class="box">
+    <div class="header-green">
+        <i class="bi bi-cash-coin"></i> Acconti
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <label>Acconto 1 (€)</label>
+            <input type="number" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label>Data</label>
+            <input type="date" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label>Acconto 2 (€)</label>
+            <input type="number" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label>Data</label>
+            <input type="date" class="form-control">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <label>Acconto 3 (€)</label>
+            <input type="number" class="form-control">
+        </div>
+
+        <div class="col-md-3">
+            <label>Data</label>
+            <input type="date" class="form-control">
+        </div>
+    </div>
+</div>
+
+<button class="btn btn-success">
+    Salva Atleta
+</button>
+
+<button type="button" id="btnExport" class="btn btn-outline-primary btn-sm" style="margin-left:10px;">
+    Esporta dati (JSON)
+</button>
+
+<!-- Libreria icone (CORRETTA e nel posto giusto) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- SCRIPT SALVATAGGIO ATLETA -->
+<script>
+// Funzione Salva Atleta
+document.querySelector("button.btn-success").addEventListener("click", function () {
+
+    const inputs = Array.from(document.querySelectorAll("input, select"))
+        .filter(el => el.type !== "file");
+
+    const atleta = {
+        id: Date.now(),
+
+        // dati atleta
+        nome: inputs[0].value,
+        cognome: inputs[1].value,
+        dataNascita: inputs[2].value,
+        societa: inputs[3].value,
+        natoA: inputs[4].value,
+        residenza: inputs[5].value,
+        giornoLezione: inputs[6].value,
+        orarioLezione: inputs[7].value,
+        lezioni: inputs[8].value,
+        costo: inputs[9].value,
+        certMedico: inputs[10].value,
+        finePacchetto: inputs[11].value,
+        foto: document.getElementById("fotoPreview").src || "",
+
+        // dati genitore
+        genitoreNome: inputs[12].value,
+        genitoreCognome: inputs[13].value,
+        genitoreCell: inputs[14].value,
+        genitoreEmail: inputs[15].value,
+        via: inputs[16].value,
+        cap: inputs[17].value,
+        citta: inputs[18].value,
+        codiceFiscale: inputs[19].value,
+
+        // acconti
+        acconto1: inputs[20].value,
+        data1: inputs[21].value,
+        acconto2: inputs[22].value,
+        data2: inputs[23].value,
+        acconto3: inputs[24].value,
+        data3: inputs[25].value
+    };
+
+    let elenco = JSON.parse(localStorage.getItem("atleti")) || [];
+    elenco.push(atleta);
+    localStorage.setItem("atleti", JSON.stringify(elenco));
+
+    alert(
+        "Atleta salvato con successo!\n\nID atleta: " + atleta.id +
+        "\n(Link genitore futuro: visualizza.html?id=" + atleta.id + ")"
+    );
+});
+</script>
+
+<!-- SCRIPT ESPORTA JSON -->
+<script>
+document.getElementById("btnExport").addEventListener("click", function () {
+
+    const elenco = JSON.parse(localStorage.getItem("atleti")) || [];
+
+    if (elenco.length === 0) {
+        alert("Non ci sono atleti da esportare.");
+        return;
+    }
+
+    const blob = new Blob([JSON.stringify(elenco, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "atleti.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+});
+</script>
+
+</body>
+</html>

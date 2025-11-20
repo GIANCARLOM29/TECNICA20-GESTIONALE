@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendario Lezioni</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    text-align: center;
+    vertical-align: top;
+    padding: 10px;
+    min-height: 60px;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.slot {
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.slot:hover {
+    transform: scale(1.05);
+}
+
+.green { background-color: #d4f8d4; }
+.yellow { background-color: #fff3b0; }
+.red { background-color: #ffcccc; }
+
+.lista-atleti {
+    font-size: 13px;
+    text-align: left;
+}
+
+</style>
+</head>
+
+<body>
+
+<h2>Calendario Lezioni (Lunedì – Venerdì)</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Ora</th>
+            <th>Lunedì</th>
+            <th>Martedì</th>
+            <th>Mercoledì</th>
+            <th>Giovedì</th>
+            <th>Venerdì</th>
+        </tr>
+    </thead>
+
+    <tbody id="calendario">
+    </tbody>
+</table>
+
+<script>
+// ORARI FISSI
+const orari = ["15:00", "16:00", "17:00", "18:00", "19:00", "20:00"];
+
+// GIORNI FISSI
+const giorni = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì"];
+
+// CARICA atleti.json
+async function caricaDati() {
+    try {
+        const risposta = await fetch("atleti.json");
+        const atleti = await risposta.json();
+
+        generaCalendario(atleti);
+
+    } catch (e) {
+        document.body.innerHTML += "<p style='color:red;'>Errore: impossibile leggere atleti.json</p>";
+    }
+}
+
+function generaCalendario(atleti) {
+    const tbody = document.getElementById("calendario");
+    tbody.innerHTML = "";
+
+    orari.forEach(ora => {
+
+        let riga = `<tr><th>${ora}</th>`;
+
+        giorni.forEach(giorno => {
+
+            // Filtra gli atleti per quel giorno/orario
+            const lista = atleti.filter(a =>
+                a.giornoLezione === giorno &&
+                a.orarioLezione === ora
+            );
+
+            let colore = "green";
+            if (lista.length >= 5 && lista.length <= 7) colore = "yellow";
+            if (lista.length === 8) colore = "red";
+
+            // Lista nomi
+            let nomi = lista.map(a => `• ${a.nome} ${a.cognome} (${a.dataNascita.substring(0,4)})`).join("<br>");
+
+            riga += `
+                <td class="slot ${colore}" onclick="mostraNomi('${giorno}', '${ora}', \`${nomi || "Nessun atleta"}\`)">
+                    <div class="lista-atleti">${nomi || "—"}</div>
+                    <small>${lista.length}/8</small>
+                </td>`;
+        });
+
+        riga += "</tr>";
+        tbody.innerHTML += riga;
+    });
+}
+
+function mostraNomi(giorno, ora, nomi) {
+    alert(`LEZIONE: ${giorno} ${ora}\n\n${nomi}`);
+}
+
+caricaDati();
+</script>
+
+</body>
+</html>
